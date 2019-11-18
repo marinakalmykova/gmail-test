@@ -1,0 +1,16 @@
+{
+  "name": "gmail_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tests/log_in_test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "codeceptjs": "^2.3.5",
+    "webdriverio": "^5.16.7"
+  }
+}
