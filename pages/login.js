@@ -1,32 +1,29 @@
 const I = actor();
-
 const testData = require('../test_data/test_data');
-const loginSteps = require('../steps/login_steps');
 
-const email = testData.email;
-const password = testData.password;
-const incorrectPassword = testData.incorrectPassword;
-const errorMessage = testData.errorMessage;
+const emailElement = testData.fields.email;
+const passwordElement = testData.fields.password;
+const nextButton = testData.nextButton;
 
 module.exports = {
 
-  loginWithCorrectPassword() {
-    loginSteps.openLoginForm();
-    loginSteps.enterEmail(email);
-    loginSteps.enterPassword(password);
+  openLoginForm() {
+    I.amOnPage('/');
+    I.see('Sign in');
+    I.see('Continue to Gmail');
   },
 
-  verifyUserIsLoggedIn() {
-    I.waitInUrl('/#inbox');
+  enterEmail(email) {
+    I.waitForElement(emailElement, 5);
+    I.fillField(emailElement, email);
+    I.click(nextButton);
   },
 
-  loginWithIncorrectPassword() {
-    loginSteps.openLoginForm();
-    loginSteps.enterEmail(email);
-    loginSteps.enterPassword(incorrectPassword);
-  },
-
-  verifyErrorMessageIsDisplayed() {
-    I.waitForElement(errorMessage);
+  enterPassword(password) {
+    I.waitForElement(passwordElement, 5);
+    I.see('Welcome');
+    I.fillField(passwordElement, password);
+    I.waitForElement(nextButton);
+    I.click(nextButton);
   },
 };
